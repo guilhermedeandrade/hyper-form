@@ -1,32 +1,59 @@
-.App {
-  text-align: center;
+.container {
+  display: flex;
+  flex-direction: row;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.paper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-content: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+  color: whitesmoke;
+  background-color: teal;
+  width: 400px;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 5px 10px #0000000a;
+  padding: 20px;
+  margin: 50px;
 }
 
-.App-link {
-  color: #61dafb;
+input {
+  background: #ecf0f1;
+  border: #ccc 1px solid;
+  border-bottom: #ccc 2px solid;
+  padding: 10px;
+  width: 250px;
+  color: purple;
+  margin: 10px auto;
+  font-size: 1em;
+  border-radius: 4px;
+  box-shadow: 5px 10px #0000000a;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  width: 100px;
+  border: 0;
+  border-radius: 10px;
+  outline: 0;
+  background-color: purple;
+  color: whitesmoke;
+  margin: 5px 0 10px;
+  font-weight: 800;
+  font-size: 1em;
+  transition: 100ms linear;
+  margin: 5px auto;
+  cursor: pointer;
+  box-shadow: 5px 10px #0000000a;
+}
+
+button:hover {
+  background-color: #975aa8;
+}
+
+pre {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+  text-align: left;
 }

@@ -1,28 +1,91 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      formValues:
+        {
+          name: '',
+          email: '',
+          password: ''
+        } || {},
+      shouldRenderValues: false
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange = event => {
+    event.persist();
+    const { name, value } = event.target;
+    this.setState(({ formValues }) => ({
+      formValues: {
+        ...formValues,
+        [name]: value
+      }
+    }));
+  };
+
+  handleClick = () => {
+    const { shouldRenderValues } = this.state;
+
+    this.setState({
+      shouldRenderValues: !shouldRenderValues
+    });
+  };
+
+  renderFields = () => {
+    const { formValues } = this.state;
+
+    return Object.entries(formValues).map(([fieldName, fieldValue]) => {
+      return (
+        <input
+          key={fieldName}
+          type="text"
+          name={fieldName}
+          value={fieldValue}
+          placeholder={`type your ${fieldName}`}
+          onChange={event => this.handleChange(event)}
+        />
+      );
+    });
+  };
+
+  renderButton = () => {
+    const { shouldRenderValues } = this.state;
+    const buttonText = !shouldRenderValues ? 'submit' : 'hide';
+
+    return (
+      <button type={buttonText} onClick={this.handleClick}>
+        {buttonText}
+      </button>
+    );
+  };
+
+  renderValues = () => {
+    if (this.state.shouldRenderValues) {
+      return (
+        <div className="paper">
+          <pre>{JSON.stringify(this.state, null, 2)}</pre>
+        </div>
+      );
+    }
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="container">
+        <div className="paper">
+          <h1>hyper form</h1>
+          {this.renderFields()}
+          {this.renderButton()}
+        </div>
+        {this.renderValues()}
       </div>
     );
   }
 }
-
-export default App;
